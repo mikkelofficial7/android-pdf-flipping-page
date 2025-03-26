@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Pdf FLipping Reader</string>
+    <string name="app_name">PaperPDF - Simple PDF Reader</string>
+    <string name="app_detail">Open .pdf file and enjoy the experience</string>
+    <string name="upload_file">Browse PDF</string>
 </resources>

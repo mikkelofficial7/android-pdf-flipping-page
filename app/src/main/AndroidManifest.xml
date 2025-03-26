@@ -14,17 +14,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FlipbookAndroid"
-        tools:targetApi="31">
+        android:theme="@style/Theme.FlipbookAndroid">
         <activity
             android:name="com.view.pdfflipbook.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter>
                 <data android:mimeType="application/pdf" />
                 <data android:scheme="content" />
                 <data android:scheme="file" />

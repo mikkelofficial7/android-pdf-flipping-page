@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.lib.flipbookengineandroid'
+    namespace 'com.view.pdfflipbook'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.lib.flipbookengineandroid"
+        applicationId "com.view.pdfflipbook"
         minSdk 28
         targetSdk 33
         versionCode 1

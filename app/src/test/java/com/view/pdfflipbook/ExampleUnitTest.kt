@@ -1,4 +1,4 @@
-package com.lib.flipbookengineandroid
+package com.view.pdfflipbook
 
 import org.junit.Test
 

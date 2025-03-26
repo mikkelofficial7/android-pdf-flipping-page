@@ -16,10 +16,8 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import androidx.palette.graphics.Palette
 import com.lib.flipbookengine.R
 import java.lang.ref.WeakReference
-
 
 class PaperFoldView : View {
     // Debug text paint stuff
@@ -488,11 +486,6 @@ class PaperFoldView : View {
      *
      * @see android.view.View.onDraw
      */
-    //@Override
-    //protected void onDraw(Canvas canvas) {
-    //	super.onDraw(canvas);
-    //	canvas.drawText(mText, getPaddingLeft(), getPaddingTop() - mAscent, mTextPaint);
-    //}
     //---------------------------------------------------------------
     // Curling. This handles touch events, the actual curling
     // implementations and so on.
@@ -804,7 +797,7 @@ class PaperFoldView : View {
             bViewDrawn = true
             onFirstDrawEvent(canvas)
         }
-        canvas.drawColor(Color.WHITE)
+        canvas.drawColor(context.getColor(R.color.white))
 
         // Curl pages
         //DoPageCurl();
@@ -929,7 +922,7 @@ class PaperFoldView : View {
      * @param pageNum
      */
     private fun drawPageNum(canvas: Canvas, pageNum: Int) {
-        mTextPaint!!.color = Color.WHITE
+        mTextPaint!!.color = context.getColor(R.color.white)
         val pageNumText = "- $pageNum -"
         drawCentered(
             canvas,
@@ -950,16 +943,16 @@ class PaperFoldView : View {
         val paint = Paint()
         paint.strokeWidth = 5f
         paint.style = Paint.Style.STROKE
-        paint.color = Color.BLACK
+        paint.color = context.getColor(R.color.black)
         canvas.drawCircle(mOrigin!!.x, mOrigin!!.y, width.toFloat(), paint)
         paint.strokeWidth = 3f
-        paint.color = Color.RED
+        paint.color = context.getColor(R.color.white)
         canvas.drawCircle(mOrigin!!.x, mOrigin!!.y, width.toFloat(), paint)
         paint.strokeWidth = 5f
-        paint.color = Color.BLACK
+        paint.color = context.getColor(R.color.black)
         canvas.drawLine(mOrigin!!.x, mOrigin!!.y, mMovement!!.x, mMovement!!.y, paint)
         paint.strokeWidth = 3f
-        paint.color = Color.RED
+        paint.color = context.getColor(R.color.white)
         canvas.drawLine(mOrigin!!.x, mOrigin!!.y, mMovement!!.x, mMovement!!.y, paint)
         posY = debugDrawPoint(canvas, "A", mA, Color.RED, posX, posY)
         posY = debugDrawPoint(canvas, "B", mB, Color.GREEN, posX, posY)
@@ -970,27 +963,6 @@ class PaperFoldView : View {
         posY = debugDrawPoint(canvas, "Mov", mMovement, Color.DKGRAY, posX, posY)
         posY = debugDrawPoint(canvas, "Origin", mOrigin, Color.MAGENTA, posX, posY)
         posY = debugDrawPoint(canvas, "Finger", mFinger, Color.GREEN, posX, posY)
-
-        // Draw some curl stuff (Just some test)
-        /*
-		canvas.save();
-		Vector2D center = new Vector2D(getWidth()/2,getHeight()/2);
-	    //canvas.rotate(315,center.x,center.y);
-
-	    // Test each lines
-		//float radius = mA.distance(mD)/2.f;
-	    //float radius = mA.distance(mE)/2.f;
-	    float radius = mA.distance(mF)/2.f;
-		//float radius = 10;
-	    float reduction = 4.f;
-		RectF oval = new RectF();
-		oval.top = center.y-radius/reduction;
-		oval.bottom = center.y+radius/reduction;
-		oval.left = center.x-radius;
-		oval.right = center.x+radius;
-		canvas.drawArc(oval, 0, 360, false, paint);
-		canvas.restore();
-		/ **/
     }
 
     private fun debugDrawPoint(
@@ -1078,10 +1050,5 @@ class PaperFoldView : View {
             val posx = (canvas.width - textPain!!.measureText(text)) / 2
             drawTextShadowed(canvas, text, posx, y, textPain, shadowPaint)
         }
-    }
-
-    private fun getDominantColor(bitmap: Bitmap): Int {
-        val palette = Palette.from(bitmap).generate()
-        return palette.getDominantColor(Color.BLACK)
     }
 }
