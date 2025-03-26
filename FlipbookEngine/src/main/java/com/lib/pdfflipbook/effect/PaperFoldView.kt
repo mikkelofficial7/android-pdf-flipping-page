@@ -1,5 +1,6 @@
 package com.lib.pdfflipbook.effect
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -120,9 +121,9 @@ class PaperFoldView : View {
             return x * x + y * y
         }
 
-        override fun equals(o: Any?): Boolean {
-            if (o is Vector2D) {
-                val p = o
+        override fun equals(other: Any?): Boolean {
+            if (other is Vector2D) {
+                val p = other
                 return p.x == x && p.y == y
             }
             return false
@@ -179,6 +180,7 @@ class PaperFoldView : View {
     /**
      * Inner class used to make a fixed timed animation of the curl effect.
      */
+    @SuppressLint("HandlerLeak")
     internal inner class FlipAnimationHandler : Handler() {
         override fun handleMessage(msg: Message) {
             FlipAnimationStep()
@@ -566,9 +568,9 @@ class PaperFoldView : View {
      * current movement direction
      * @return Corrected point
      */
-    private fun CapMovement(point: Vector2D?, bMaintainMoveDir: Boolean): Vector2D? {
+    private fun CapMovement(points: Vector2D?, bMaintainMoveDir: Boolean): Vector2D? {
         // Make sure we never ever move too much
-        var point = point
+        var point = points
         if (point!!.distance(mOrigin) > mFlipRadius) {
             if (bMaintainMoveDir) {
                 // Maintain the direction
@@ -746,11 +748,11 @@ class PaperFoldView : View {
      */
     private fun nextView() {
         var foreIndex = mIndex + 1
-        if (foreIndex >= mPages!!.size) {
+        if (foreIndex >= mPages.size) {
             foreIndex = 0
         }
         var backIndex = foreIndex + 1
-        if (backIndex >= mPages!!.size) {
+        if (backIndex >= mPages.size) {
             backIndex = 0
         }
         mIndex = foreIndex
@@ -764,7 +766,7 @@ class PaperFoldView : View {
         val backIndex = mIndex
         var foreIndex = backIndex - 1
         if (foreIndex < 0) {
-            foreIndex = mPages!!.size - 1
+            foreIndex = mPages.size - 1
         }
         mIndex = foreIndex
         setViews(foreIndex, backIndex)
