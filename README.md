@@ -6,6 +6,10 @@ Latest stable version:
 
 [![](https://jitpack.io/v/mikkelofficial7/android-pdf-flipping-page.svg)](https://jitpack.io/#mikkelofficial7/android-pdf-flipping-page)
 
+Previous/Deprecated version:
+
+[![My Skills](https://img.shields.io/badge/JitPack-v1.2-f30a06)](https://mikkelofficial7.github.io/)
+
 How to use (Sample demo provided):
 
 1. Add this gradle in ```build.gradle(:app)``` :
