@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
+import com.lib.flipbookengine.R
 import com.lib.flipbookengine.databinding.LayoutFlipperBinding
 import com.lib.pdfflipbook.listener.PageRunningListener
 
@@ -20,7 +21,7 @@ class PdfFlipBook @JvmOverloads constructor(
     private var actualContentHeight = 0
     private var actualContentWidth = 0
     private var currentZoomState: ZoomState
-    private lateinit var pageRunningListener: PageRunningListener
+    private var pageRunningListener: PageRunningListener = this
     private var listData: ArrayList<Bitmap> = arrayListOf()
     private val binding: LayoutFlipperBinding = LayoutFlipperBinding.inflate(LayoutInflater.from(context), this, true)
 
@@ -28,12 +29,11 @@ class PdfFlipBook @JvmOverloads constructor(
         currentZoomState = ZoomState.NO_ZOOM
         getProportionalContentSize()
         getCurrentZoomState()
-        hideButtonZoom()
+        showHideButtonZoom(false)
+        showHidePdfMode(false)
     }
 
     fun readPdfFile(context: Context, pdfUri: Uri) {
-        pageRunningListener = this
-
         val bitmapList = ArrayList<Bitmap>()
         val contentResolver = context.contentResolver
 
@@ -74,24 +74,17 @@ class PdfFlipBook @JvmOverloads constructor(
         if (listData.size == 1) listData.add(createDefaultWhiteImage(600, 600))
 
         getCurrentZoomState()
-        showButtonZoom()
         handleZoomAction()
+        showHideButtonZoom(true)
+        showHidePdfMode(true)
 
         binding.paperFoldView.setData(listData, pageRunningListener)
     }
 
-    private fun createDefaultWhiteImage(width: Int = 10, height: Int = 10): Bitmap {
+    private fun createDefaultWhiteImage(width: Int, height: Int): Bitmap {
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         bitmap.eraseColor(Color.WHITE) // Fill with white color
         return bitmap
-    }
-
-    private fun showButtonZoom() {
-        binding.layoutZoom.isVisible = true
-    }
-
-    private fun hideButtonZoom() {
-        binding.layoutZoom.isVisible = false
     }
 
     private fun handleZoomAction() {
@@ -114,41 +107,59 @@ class PdfFlipBook @JvmOverloads constructor(
             ZoomState.NO_ZOOM -> {
                 showHideZoomButton(true)
                 showHideResetZoomButton(false)
+                showHidePdfMode(true)
                 binding.paperFoldView.visibility = View.VISIBLE
             }
             ZoomState.ZOOM_IN -> {
                 showHideZoomButton(false)
                 showHideResetZoomButton(true)
+                showHidePdfMode(true)
                 binding.paperFoldView.visibility = View.INVISIBLE
             }
             ZoomState.ZOOM_OUT -> {
                 showHideZoomButton(false)
                 showHideResetZoomButton(true)
+                showHidePdfMode(true)
                 binding.paperFoldView.visibility = View.INVISIBLE
             }
         }
     }
 
     private fun getProportionalContentSize() {
-        binding.layoutActivePage.viewTreeObserver.addOnGlobalLayoutListener {
-            actualContentHeight = binding.layoutActivePage.height
-            actualContentWidth = binding.layoutActivePage.width
+        binding.layoutShadow.viewTreeObserver.addOnGlobalLayoutListener {
+            actualContentHeight = binding.layoutShadow.height
+            actualContentWidth = binding.layoutShadow.width
 
             binding.paperFoldView.setActualContentSize(actualContentHeight, actualContentWidth)
         }
     }
 
-    private fun showHideResetZoomButton(isShow: Boolean) {
+    private fun showHideButtonZoom(isShow: Boolean) {
+        binding.layoutZoom.isVisible = isShow
+    }
+
+    fun showHideResetZoomButton(isShow: Boolean) {
         binding.btnResetZoom.isVisible = isShow
     }
 
-    private fun showHideZoomButton(isShow: Boolean) {
+    fun showHideZoomButton(isShow: Boolean) {
         binding.btnZoomIn.isVisible = isShow
         binding.btnZoomOut.isVisible = isShow
         binding.dividerZoom.isVisible = isShow
     }
 
+    private fun showHidePdfMode(isShow: Boolean) {
+        binding.tvPdfMode.isVisible = isShow
+
+        if (!isShow) return
+        binding.tvPdfMode.text = when(currentZoomState) {
+            ZoomState.NO_ZOOM -> context.getString(R.string.enter_read_mode)
+            else -> context.getString(R.string.enter_zoom_mode)
+        }
+    }
+
     override fun onCurrentPageRunning(activePage: Bitmap?) {
+        binding.layoutShadow.setImageBitmap(activePage)
         binding.layoutActivePage.setImageBitmap(activePage)
     }
 }

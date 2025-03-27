@@ -38,7 +38,7 @@ publishing {
         create("release", MavenPublication) {
             groupId = 'com.github.mikkelofficial7'
             artifactId = 'pdfFlipperBook'
-            version = '1.0.0'
+            version = '1.3.0'
 
             afterEvaluate {
                 from components.release // Use "default" for Android libraries
@@ -53,6 +53,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.palette:palette-ktx:1.0.0'
+    implementation 'com.github.mikkelofficial7:android-zoom-imageview:v1.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'

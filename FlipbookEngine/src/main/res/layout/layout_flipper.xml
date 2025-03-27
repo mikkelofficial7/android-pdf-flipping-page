@@ -6,6 +6,17 @@
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/layoutShadow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="200dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/frameActivePage"
         android:layout_width="match_parent"
@@ -17,13 +28,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.lib.zoomimageengine.ZoomImageView
             android:id="@+id/layoutActivePage"
             android:adjustViewBounds="true"
-            android:minHeight="200dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:background="@color/black"/>
+            android:layout_height="match_parent"
+            tools:background="@color/white"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -83,5 +93,23 @@
             android:layout_height="match_parent"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/tvPdfMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_background"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        android:textSize="12sp"
+        android:textColor="@color/gray"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:text="@string/enter_read_mode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/gray" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
