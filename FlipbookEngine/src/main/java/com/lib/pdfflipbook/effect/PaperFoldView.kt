@@ -18,10 +18,11 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import com.lib.flipbookengine.R
+import com.lib.pdfflipbook.listener.PageRunningListener
 import java.lang.ref.WeakReference
 
 class PaperFoldView : View {
-    // Debug text paint stuff
+    private lateinit var pageRunningListener: PageRunningListener
     private var mTextPaint: Paint? = null
     private var mTextPaintShadow: TextPaint? = null
 
@@ -60,6 +61,10 @@ class PaperFoldView : View {
 
     /** Page curl edge  */
     private var mCurlEdgePaint: Paint? = null
+
+    /** Actual proportional content size  */
+    private var actualContentHeight: Int = 0
+    private var actualContentWidth: Int = 0
 
     /** Our points used to define the current clipping paths in our draw call  */
     private var mA: Vector2D? = null
@@ -239,15 +244,23 @@ class PaperFoldView : View {
     /**
      * Initialize the view
      */
-    fun setData(data: List<Bitmap>) {
+    fun setData(data: List<Bitmap>, listener: PageRunningListener) {
         mPages = ArrayList()
         mPages.clear()
         mPages.addAll(data)
 
+        pageRunningListener = listener
+
         mForeground = if (mPages.size > 0) mPages.first() else null
         mBackground = if (mPages.size > 1) mPages[1] else null
 
+        pageRunningListener.onCurrentPageRunning(mForeground)
         init(context)
+    }
+
+    fun setActualContentSize(height: Int, width: Int) {
+        actualContentHeight = height
+        actualContentWidth = width
     }
 
     private fun init(context: Context) {
@@ -741,6 +754,8 @@ class PaperFoldView : View {
         val temp = mForeground
         mForeground = mBackground
         mBackground = temp
+
+        pageRunningListener.onCurrentPageRunning(mForeground)
     }
 
     /**
@@ -780,11 +795,14 @@ class PaperFoldView : View {
     private fun setViews(foreground: Int, background: Int) {
         mForeground = mPages[foreground]
         mBackground = mPages[background]
+
+        pageRunningListener.onCurrentPageRunning(mForeground)
     }
 
     //---------------------------------------------------------------
     // Drawing methods
     //---------------------------------------------------------------
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         if (mPages.isEmpty()) return
         // Always refresh offsets
@@ -804,21 +822,21 @@ class PaperFoldView : View {
         // Curl pages
         //DoPageCurl();
 
-        // TODO: This just scales the views to the current
-        // width and height. We should add some logic for:
-        //  1) Maintain aspect ratio
-        //  2) Uniform scale
-        //  3) ...
-        val rect = Rect()
-        rect.left = 0
-        rect.top = 0
-        rect.bottom = height
-        rect.right = width
+        // Calculate center position
+        val centerX = (width - actualContentWidth) / 2
+        val centerY = (height - actualContentHeight) / 2
 
-        // First Page render
+        // Define Rect to be centered
+        val rect = Rect(
+            centerX,
+            centerY,
+            centerX + actualContentWidth,
+            centerY + actualContentHeight
+        )
+
         val paint = Paint()
 
-        // Draw our elements
+        // Draw elements inside centered rect
         drawForeground(canvas, rect, paint)
         drawBackground(canvas, rect, paint)
         drawCurlEdge(canvas)
@@ -855,9 +873,6 @@ class PaperFoldView : View {
     private fun drawForeground(canvas: Canvas, rect: Rect, paint: Paint) {
         if (mForeground == null) return
         canvas.drawBitmap(mForeground!!, null, rect, paint)
-
-        // Draw the page number (first page is 1 in real life :D
-        // there is no page number 0 hehe)
         drawPageNum(canvas, mIndex)
     }
 
