@@ -2,6 +2,10 @@
 
 <img src="https://github.com/mikkelofficial7/android-pdf-flipping-page/blob/main/sample1.jpg" alt="Flipbook Engine" width="300" height="400">
 
+Latest stable version: 
+
+[![](https://jitpack.io/v/mikkelofficial7/android-pdf-flipping-page.svg)](https://jitpack.io/#mikkelofficial7/android-pdf-flipping-page)
+
 How to use (Sample demo provided):
 
 1. Add this gradle in ```build.gradle(:app)``` :
