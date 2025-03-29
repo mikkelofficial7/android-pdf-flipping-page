@@ -1,6 +1,9 @@
 # PaperPDF - Simple PDF Reader with paper motion style 📁
 
-<img src="https://github.com/mikkelofficial7/android-pdf-flipping-page/blob/main/sample1.jpg" alt="Flipbook Engine" width="300" height="400">
+<div align="left">
+  <img src="https://github.com/mikkelofficial7/android-pdf-flipping-page/blob/main/sample1.jpg" alt="Flipbook Engine" width="300" height="400">
+  <img src="https://github.com/mikkelofficial7/android-pdf-flipping-page/blob/main/sample.gif" alt="Flipbook Engine" width="200" height="400">
+</div>
 
 Latest stable version: 
 
