@@ -12,6 +12,7 @@ Latest stable version:
 Previous/Deprecated version:
 
 [![My Skills](https://img.shields.io/badge/JitPack-v1.3-f30a06)](https://mikkelofficial7.github.io/)
+
 [![My Skills](https://img.shields.io/badge/JitPack-v1.2-f30a06)](https://mikkelofficial7.github.io/)
 
 How to use (Sample demo provided):
