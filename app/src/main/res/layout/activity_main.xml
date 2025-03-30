@@ -7,10 +7,15 @@
     android:orientation="vertical"
     tools:context="com.view.pdfflipbook.MainActivity">
 
+    <com.lib.pdfflipbook.effect.PaperFoldView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <com.lib.pdfflipbook.PdfFlipBook
         android:id="@+id/flipView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:showTitleMode="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"

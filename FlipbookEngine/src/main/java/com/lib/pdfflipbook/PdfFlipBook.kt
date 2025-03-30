@@ -1,5 +1,6 @@
 package com.lib.pdfflipbook
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -15,9 +16,11 @@ import com.lib.flipbookengine.R
 import com.lib.flipbookengine.databinding.LayoutFlipperBinding
 import com.lib.pdfflipbook.listener.PageRunningListener
 
+@SuppressLint("Recycle", "CustomViewStyleable")
 class PdfFlipBook @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs), PageRunningListener {
+    private var showTitleMode: Boolean = false
     private var actualContentHeight = 0
     private var actualContentWidth = 0
     private var currentZoomState: ZoomState
@@ -26,11 +29,13 @@ class PdfFlipBook @JvmOverloads constructor(
     private val binding: LayoutFlipperBinding = LayoutFlipperBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
+        val attr = context.obtainStyledAttributes(attrs, R.styleable.PdfView)
+        showTitleMode = attr.getBoolean(R.styleable.PdfView_showTitleMode, false)
+
         currentZoomState = ZoomState.NO_ZOOM
         getProportionalContentSize()
         getCurrentZoomState()
         showHideButtonZoom(false)
-        showHidePdfMode(false)
     }
 
     fun readPdfFile(context: Context, pdfUri: Uri) {
@@ -73,10 +78,10 @@ class PdfFlipBook @JvmOverloads constructor(
         if (listData.isEmpty()) return
         if (listData.size == 1) listData.add(createDefaultWhiteImage(600, 600))
 
+        currentZoomState = ZoomState.NO_ZOOM
         getCurrentZoomState()
         handleZoomAction()
         showHideButtonZoom(true)
-        showHidePdfMode(true)
 
         binding.paperFoldView.setData(listData, pageRunningListener)
     }
@@ -107,19 +112,19 @@ class PdfFlipBook @JvmOverloads constructor(
             ZoomState.NO_ZOOM -> {
                 showHideZoomButton(true)
                 showHideResetZoomButton(false)
-                showHidePdfMode(true)
+                showHidePdfMode(showTitleMode)
                 binding.paperFoldView.visibility = View.VISIBLE
             }
             ZoomState.ZOOM_IN -> {
                 showHideZoomButton(false)
                 showHideResetZoomButton(true)
-                showHidePdfMode(true)
+                showHidePdfMode(showTitleMode)
                 binding.paperFoldView.visibility = View.INVISIBLE
             }
             ZoomState.ZOOM_OUT -> {
                 showHideZoomButton(false)
                 showHideResetZoomButton(true)
-                showHidePdfMode(true)
+                showHidePdfMode(showTitleMode)
                 binding.paperFoldView.visibility = View.INVISIBLE
             }
         }
@@ -148,8 +153,8 @@ class PdfFlipBook @JvmOverloads constructor(
         binding.dividerZoom.isVisible = isShow
     }
 
-    private fun showHidePdfMode(isShow: Boolean) {
-        binding.tvPdfMode.isVisible = isShow
+    fun showHidePdfMode(isShow: Boolean) {
+        binding.tvPdfMode.isVisible = isShow && listData.isNotEmpty()
 
         if (!isShow) return
         binding.tvPdfMode.text = when(currentZoomState) {
