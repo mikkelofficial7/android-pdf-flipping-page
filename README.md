@@ -11,6 +11,7 @@ Latest stable version:
 
 Previous/Deprecated version:
 
+[![My Skills](https://img.shields.io/badge/JitPack-v1.3-f30a06)](https://mikkelofficial7.github.io/)
 [![My Skills](https://img.shields.io/badge/JitPack-v1.2-f30a06)](https://mikkelofficial7.github.io/)
 
 How to use (Sample demo provided):
@@ -39,18 +40,16 @@ repositories {
 3. Put this XML in your ```activity_main.xml```
 ```
 <com.lib.pdfflipbook.PdfFlipBook
-  android:id="@+id/flipView"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  app:layout_constraintEnd_toEndOf="parent"
-  app:layout_constraintBottom_toBottomOf="parent"
-  app:layout_constraintTop_toTopOf="parent"
-  app:layout_constraintStart_toStartOf="parent"/>
+        android:id="@+id/flipView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:showTitleMode="true"/> <!-- true or false -->
 ```
 
 4. Access Pdf Viewer in you ```Activity``` or ```Fragment``` class
 ```
 binding.flipView.readPdfFile(context, uri)
+binding.flipView.showHidePdfMode(false) // show title reader/zoom mode (true or false)
 ```
 
 5. Add this permission to ```AndroidManifest.xml```
