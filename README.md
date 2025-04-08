@@ -7,13 +7,13 @@
 
 Latest stable version: 
 
-[![](https://jitpack.io/v/mikkelofficial7/android-pdf-flipping-page.svg)](https://jitpack.io/#mikkelofficial7/android-pdf-flipping-page)
+[![](https://jitpack.io/v/mikkelofficial7/android-pdf-flipping-page.svg)](https://github.com/mikkelofficial7/android-pdf-flipping-page/releases/tag/v1.3.1)
 
 Previous/Deprecated version:
 
-[![old version](https://img.shields.io/badge/JitPack-v1.3-f30a06)](https://github.com/mikkelofficial7/android-pdf-flipping-page)
+[![old version](https://img.shields.io/badge/JitPack-v1.3-f30a06)](https://github.com/mikkelofficial7/android-pdf-flipping-page/releases/tag/v1.3)
 
-[![old version](https://img.shields.io/badge/JitPack-v1.2-f30a06)](https://github.com/mikkelofficial7/android-pdf-flipping-page)
+[![old version](https://img.shields.io/badge/JitPack-v1.2-f30a06)](https://github.com/mikkelofficial7/android-pdf-flipping-page/releases/tag/v1.2)
 
 How to use (Sample demo provided):
 
