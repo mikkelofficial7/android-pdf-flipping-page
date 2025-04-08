@@ -11,9 +11,9 @@ Latest stable version:
 
 Previous/Deprecated version:
 
-[![My Skills](https://img.shields.io/badge/JitPack-v1.3-f30a06)](https://mikkelofficial7.github.io/)
+[![old version](https://img.shields.io/badge/JitPack-v1.3-f30a06)](https://github.com/mikkelofficial7/android-pdf-flipping-page)
 
-[![My Skills](https://img.shields.io/badge/JitPack-v1.2-f30a06)](https://mikkelofficial7.github.io/)
+[![old version](https://img.shields.io/badge/JitPack-v1.2-f30a06)](https://github.com/mikkelofficial7/android-pdf-flipping-page)
 
 How to use (Sample demo provided):
 
