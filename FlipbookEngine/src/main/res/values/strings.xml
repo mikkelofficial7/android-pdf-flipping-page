@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="reset_zoom" translatable="false">Reset</string>
+    <string name="reset_zoom" translatable="false">Exit zoom mode</string>
     <string name="enter_zoom_mode" translatable="false">You are entering zooming mode</string>
     <string name="enter_read_mode" translatable="false">You are entering reading mode</string>
 </resources>

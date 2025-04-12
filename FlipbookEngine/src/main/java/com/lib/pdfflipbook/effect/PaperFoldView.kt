@@ -17,10 +17,12 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import androidx.annotation.RestrictTo
 import com.lib.flipbookengine.R
 import com.lib.pdfflipbook.listener.PageRunningListener
 import java.lang.ref.WeakReference
 
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
 class PaperFoldView : View {
     private lateinit var pageRunningListener: PageRunningListener
     private var mTextPaint: Paint? = null

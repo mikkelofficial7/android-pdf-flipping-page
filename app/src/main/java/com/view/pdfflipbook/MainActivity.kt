@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
             binding.flipView.readPdfFile(this, uri)
         }
 
+        binding.flipView.showHidePdfTitleMode(true)
+        binding.flipView.setTimerTitleDismiss(0)
+
         binding.btnUploadPdf.setOnClickListener {
             pdfPickerLauncher.launch(arrayOf("application/pdf"))
         }
