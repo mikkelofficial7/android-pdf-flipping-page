@@ -14,13 +14,13 @@ How to use (Sample demo provided):
 1. Add this gradle in ```build.gradle(:app)``` :
 ```
 dependencies {
-   implementation 'com.github.mikkelofficial7:android-pdf-flipping-page:v1.2'
+   implementation 'com.github.mikkelofficial7:android-pdf-flipping-page:v1.3.2'
 }
  ```
 or gradle.kts:
 ```
 dependencies {
-   implementation("com.github.mikkelofficial7:android-pdf-flipping-page:v1.2")
+   implementation("com.github.mikkelofficial7:android-pdf-flipping-page:v1.3.2")
 }
  ```
 
