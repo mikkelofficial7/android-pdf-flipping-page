@@ -12,6 +12,6 @@
     </declare-styleable>
     <declare-styleable name="PdfView">
         <attr name="showTitleMode" format="boolean" />
-        <attr name="titleDismissTime" format="integer" />
+        <attr name="titleDismissMilliSecond" format="integer" />
     </declare-styleable>
 </resources>

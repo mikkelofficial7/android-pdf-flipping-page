@@ -7,13 +7,7 @@
 
 Latest stable version: 
 
-[![](https://jitpack.io/v/mikkelofficial7/android-pdf-flipping-page.svg)](https://github.com/mikkelofficial7/android-pdf-flipping-page/releases/tag/v1.3.1)
-
-Previous/Deprecated version:
-
-[![old version](https://img.shields.io/badge/JitPack-v1.3-f30a06)](https://github.com/mikkelofficial7/android-pdf-flipping-page/releases/tag/v1.3)
-
-[![old version](https://img.shields.io/badge/JitPack-v1.2-f30a06)](https://github.com/mikkelofficial7/android-pdf-flipping-page/releases/tag/v1.2)
+[![](https://jitpack.io/v/mikkelofficial7/android-pdf-flipping-page.svg)](https://github.com/mikkelofficial7/android-pdf-flipping-page/releases/tag/v1.3.2)
 
 How to use (Sample demo provided):
 
@@ -50,6 +44,7 @@ repositories {
 4. Access Pdf Viewer in you ```Activity``` or ```Fragment``` class
 ```
 binding.flipView.readPdfFile(context, uri)
+binding.flipView.setTimerTitleDismiss(2000) // in millisecond, set 0 to undismissable
 binding.flipView.showHidePdfMode(false) // show title reader/zoom mode (true or false)
 ```
 
