@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.lib.flipbookengine.R
 import com.lib.flipbookengine.databinding.LayoutFlipperBinding
+import com.lib.pdfflipbook.readOnlyProperty.ObjectImpl
 import com.lib.pdfflipbook.enums.ZoomState
 import com.lib.pdfflipbook.listener.PageRunningListener
 import com.lib.pdfflipbook.pdf.PdfClass
@@ -30,11 +31,11 @@ class Flipper @JvmOverloads constructor(
     private var actualContentWidth = 0
     private var currentZoomState: ZoomState
 
-    private var pageRunningListener: PageRunningListener = this
+    private val pageRunningListener: PageRunningListener by ObjectImpl { this }
     private var listData: ArrayList<Bitmap> = arrayListOf()
 
     private val binding: LayoutFlipperBinding = LayoutFlipperBinding.inflate(LayoutInflater.from(context), this, true)
-    private val pdfEngine: PdfClass = PdfClassImpl()
+    private val pdfEngine: PdfClass by ObjectImpl{ PdfClassImpl() }
     init {
         val attr = context.obtainStyledAttributes(attrs, R.styleable.PdfView)
         showTitleMode = attr.getBoolean(R.styleable.PdfView_showTitleMode, false)

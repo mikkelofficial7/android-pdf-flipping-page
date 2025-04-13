@@ -45,4 +45,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
     implementation project(':FlipbookEngine')
+    // implementation("com.github.mikkelofficial7:android-pdf-flipping-page:v1.3.2")
 }

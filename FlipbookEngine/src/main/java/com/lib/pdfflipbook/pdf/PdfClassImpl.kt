@@ -9,7 +9,6 @@ import android.net.Uri
 import androidx.annotation.RestrictTo
 
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
-
 class PdfClassImpl: PdfClass {
     override fun readPdfFile(context: Context, pdfUri: Uri): ArrayList<Bitmap> {
         val bitmapList = ArrayList<Bitmap>()

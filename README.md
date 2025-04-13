@@ -1,5 +1,7 @@
 # PaperPDF - Simple PDF Reader with paper motion style 📁
 
+The PDF has paper-flip motion style while flipping it and in zooming mode, you can pinch-to-zoom the pdf as you wish.
+
 <div align="left">
   <img src="https://github.com/mikkelofficial7/android-pdf-flipping-page/blob/main/sample1.jpg" alt="Flipbook Engine" width="300" height="400">
   <img src="https://github.com/mikkelofficial7/android-pdf-flipping-page/blob/main/sample.gif" alt="Flipbook Engine" width="200" height="400">
